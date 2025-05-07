@@ -1,0 +1,36 @@
+<tr>
+    <td><label for="status">Status</label></td>
+    <td>
+        <?php 
+            $status = $_SESSION['user']['status'] ?? 0;
+        ?>
+        <select name="status" class="form-control" id="status">
+            <option value="1" <?= $status == 1 ? 'selected' : '' ?>>Active</option>
+            <option value="0" <?= $status == 0 ? 'selected' : '' ?>>Inactive</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td><input type="submit" class="buttons-new" name="update" value="Update"></td>
+    <td>
+        <form method="POST" action="myformlogout.php">
+            <button type="submit" class="buttons">LOGOUT</button>
+        </form>
+    </td>
+</tr>
+
+<tr>
+    <td><input type="submit" class="buttons-new" name="update" value="Update"></td>
+    <td>
+        <form method="POST" action="myformlogout.php">
+            <button type="submit" class="buttons">LOGOUT</button>
+        </form>
+    </td>
+</tr>
+
+<?php
+session_start();
+session_unset();
+session_destroy();
+header("Location: login.php"); // Or your homepage
+exit();
