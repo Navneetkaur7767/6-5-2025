@@ -34,3 +34,16 @@ session_unset();
 session_destroy();
 header("Location: login.php"); // Or your homepage
 exit();
+
+// New status update
+if (isset($_POST['status'])) {
+    $new_status = (int)$_POST['status'];
+    if ($new_status !== (int)$user['status']) {
+        $updates[] = "status = $new_status";
+        $user['status'] = $new_status; // Update in local user array
+    }
+}
+
+
+if (empty($errors) && !empty($updates)) {
+    $update_sql = "UPDATE formDATA SET " . implode(", ", $updates) . " WHERE id = $user_id";
